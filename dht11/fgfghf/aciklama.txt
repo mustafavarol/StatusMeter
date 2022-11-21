@@ -1,0 +1,13 @@
+Merhaba Arkadaþlar;
+
+CCS C ile PIC16F877A kullanarak DHT11'den sýcaklýk ve nem bilgisi okuyup 16x2 LCD ekrana yazdýracaðýz.
+
+Kullancaðýmýz Malzemeler:
+- PIC16F877A
+- DHT 11
+- 16x2 LCD
+
+Farklý soru ve istekleriniz için yorum yazabilir yada 
+www.izmirteknikdestek.com sitesinden bize ulaþabilirsiniz.
+
+Video Sonunda kanalýmýza abone olarak destek olabilirsiniz.

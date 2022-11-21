@@ -1,0 +1,4 @@
+>>> Warning 202 "C:\Users\lenovo\Desktop\dht11\DHT11.C" Line 44(10,23): Variable never used:   dht_check_sum
+      Memory usage:   ROM=11%      RAM=6% - 10%
+      0 Errors,  1 Warnings.
+Build Successful.

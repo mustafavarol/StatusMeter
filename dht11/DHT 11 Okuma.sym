@@ -1,0 +1,128 @@
+004-005 @WRITE_PROGRAM_MEMORY8.P1
+004-005 @READ_PROGRAM_MEMORY8.P2
+008     PSP_DATA
+015     CCP_1_LOW
+015     CCP_1
+016     CCP_1_HIGH
+01B     CCP_2
+01B     CCP_2_LOW
+01C     CCP_2_HIGH
+020-029 dht_dat
+02A     @TRIS_C
+02B     sicaklik
+02C     nem
+02D     eskinem
+02E     eskisicaklik
+02F     @PSTRINGCN7_656.P1
+02F     @PRINTF_D_656.P2
+02F     read_dht.GlobalErr
+02F     lcd_init.i
+02F     MAIN.@SCRATCH1
+02F     @PSTRINGC7_656.@SCRATCH1
+030     read_dht.dht_in
+030     @PRINTF_D_656.P1
+030     lcd_init.@SCRATCH1
+030     @PSTRINGC7_656.@SCRATCH2
+030     @PSTRINGCN7_656.@SCRATCH1
+031     read_dht.i
+031     @PSTRINGC7_656.@SCRATCH3
+031     @PSTRINGCN7_656.@SCRATCH2
+031     @PRINTF_D_656.@SCRATCH1
+032     read_dht.dht_check_sum
+032     @PSTRINGC7_656.@SCRATCH4
+032     @PSTRINGCN7_656.@SCRATCH3
+032     @PRINTF_D_656.@SCRATCH2
+033     read_dht.@SCRATCH1
+033     @PSTRINGCN7_656.@SCRATCH4
+033     @PRINTF_D_656.@SCRATCH3
+034     read_dht.@SCRATCH2
+034     @PRINTF_D_656.@SCRATCH4
+035     leer_dht_dat.i
+035     @DIV88.P1
+035     lcd_putc.c
+036     lcd_gotoxy.x
+036     @delay_ms1.P1
+036     @DIV88.P2
+036     leer_dht_dat.result
+037     lcd_gotoxy.y
+037     leer_dht_dat.@SCRATCH1
+037     @DIV88.@SCRATCH1
+038     lcd_gotoxy.address
+039     lcd_gotoxy.@SCRATCH1
+03A     lcd_send_byte.address
+03B     lcd_send_byte.n
+03C     lcd_read_byte.low
+03C     lcd_send_byte.@SCRATCH1
+03D     lcd_read_byte.high
+03D     lcd_send_nibble.n
+03E     lcd_read_nibble.n
+03E     lcd_read_byte.@SCRATCH1
+03F     lcd_read_nibble.@SCRATCH1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+09C.6   C1OUT
+09C.7   C2OUT
+10D-10E @WRITE_PROGRAM_MEMORY8.P1
+10D-10E @READ_PROGRAM_MEMORY8.P2
+
+ROM Allocation:
+000004  LCD_INIT_STRING.call
+000008  LCD_INIT_STRING.data
+00000C  @const676.call
+000011  @const680.call
+00001A  @const689.call
+000022  @delay_ms1
+000037  lcd_send_nibble
+000062  lcd_read_nibble
+000093  lcd_send_byte
+00009B  lcd_read_byte
+0000EF  lcd_init
+00012C  lcd_gotoxy
+00013E  lcd_putc
+00016A  @PSTRINGC7_656
+0001B7  read_dht
+0001B8  dht_init
+00020A  leer_dht_dat
+00024F  @PSTRINGCN7_656
+0002A3  @DIV88
+0002B8  @PRINTF_D_656
+00030F  MAIN
+00030F  @cinit1
+000318  @cinit2
+
+Project Directory:
+    C:\Users\lenovo\Desktop\dht11\
+
+Project Files:
+    DHT 11 Okuma.c                                          [04-Oca-21 12:58  CRC=90BDD8C6]
+    ..\..\..\..\Program Files (x86)\PICC\Devices\16F877A.h  [21-Haz-13 16:04  CRC=4E65664C]
+    DHT11.C                                                 [07-Aðu-17 19:21  CRC=E7080F91]
+    ..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c      [23-Aðu-12 09:01  CRC=D28E8746]
+
+Source signature=6B485D2F
+
+Units:
+    DHT 11 Okuma (main)
+
+Compiler Settings:
+    Processor:      PIC16F877A
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   DHT 11 Okuma.xsym
+    Errors:      DHT 11 Okuma.err
+    Ext Symbols: DHT 11 Okuma.esym
+    INHX8:       DHT 11 Okuma.hex
+    Symbols:     DHT 11 Okuma.sym
+    List:        DHT 11 Okuma.lst
+    Debug/COFF:  DHT 11 Okuma.cof
+    Project:     DHT 11 Okuma.ccspjt
+    Call Tree:   DHT 11 Okuma.tre
+    Statistics:  DHT 11 Okuma.STA

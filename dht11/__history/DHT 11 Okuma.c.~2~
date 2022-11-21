@@ -1,0 +1,88 @@
+/*
+Merhaba Arkadaþlar;
+
+CCS C ile PIC16F877A kullanarak DHT11'den sýcaklýk ve nem bilgisi okuyup 
+16x2 LCD ekrana yazdýracaðýz.
+
+Kullancaðýmýz Malzemeler:
+- PIC16F877A
+- DHT 11
+- 16x2 LCD
+
+Farklý soru ve istekleriniz için yorum yazabilir yada 
+www.izmirteknikdestek.com sitesinden bize ulaþabilirsiniz.
+
+Video Sonunda kanalýmýza abone olarak destek olabilirsiniz.
+
+*/
+
+
+#include <16F877A.h> // Kullanacagimiz pic'in kutuphanesini ekliyoruz.
+
+#FUSES NOWDT                    //Watch dog timer kapatiyoruz
+#FUSES NOBROWNOUT               //Brownout Reset kapatýyoruz
+#FUSES NOLVP                    //Dusuk voltaj programlama kapalý
+
+#use delay(crystal=4000000) // Osilator frekansý ayarlanýyor.
+
+#define dht11 PIN_C0
+#include "DHT11.C"
+
+//LCD Ekran Baðlantý tanýmlamalarý
+#define LCD_RS_PIN PIN_B7
+#define LCD_RW_PIN PIN_B6
+#define LCD_ENABLE_PIN PIN_B5
+#define LCD_DATA4 PIN_B4
+#define LCD_DATA5 PIN_B3
+#define LCD_DATA6 PIN_B2
+#define LCD_DATA7 PIN_B1
+
+#include "lcd.c" // LCD kütüphanesinin eklenmesi
+
+int sicaklik,nem,eskinem,eskisicaklik; // Kullanýlan deðiþkenlerin tanýmlanmasý
+
+
+void main()
+{
+  
+   lcd_init();  // LCD'nin çalýþmasý hazýrlanmasý
+   
+   printf(lcd_putc,"Izmir"); // Ekrana belirtilen yazýlarýn gönderilmesi
+   printf(lcd_putc,"\nTeknik Destek"); // Yazýnýn baþýna eklenen \n komutu bir alt satýra geçmesi içindir.
+   delay_ms(1000);
+   printf(lcd_putc,"\f");
+   printf(lcd_putc,"DHT 11");
+   printf(lcd_putc,"\nOKUMA ORNEGI");
+   delay_ms(1000);
+
+
+printf(lcd_putc,"\f"); // Ekraný silme komutu
+ while(TRUE)
+   {
+
+read_dht(); // DHT 11'in okumasý için gereken fonksiyon.
+delay_ms(100);
+   
+sicaklik = dht_dat[2]; // dht_dat[2] deðiþkenini bize sýcaklýk bilgisini verir bu bilgiyi sicaklik olarak tanýmladýðýmýz deðiþkene atýyoruz
+nem = dht_dat[0]; // dht_dat[0] deðiþkenini bize nem bilgisini verir bu bilgiyi nem olarak tanýmladýðýmýz deðiþkene atýyoruz
+   
+   
+if (eskisicaklik!=sicaklik) { // Ekranýn sadece sýcaklýk deðiþtiðinde yenilenmesi için 2. deðiþken ile karþýlaþtýrýlmasý. Eðer deðiþim var ise ekranýn yenilemesi.
+lcd_gotoxy(1,1); // Ekranýn yazmaya baþlamasý için 1. Satýr 1. Sütuna gitmesine yarayan fonksiyon.
+printf(lcd_putc,"Sicaklik : %i C  ",sicaklik); // Ekrana sicaklik deðiþkeninin yazdýrýlmasý
+eskisicaklik=sicaklik; // Ekranýn sadece sýcaklýk deðiþtiðinde yenilenmesi için 2. bir deðiþkene atýyoruz.
+}
+
+if (eskinem!=nem) { // Ekranýn sadece nem deðiþtiðinde yenilenmesi için 2. deðiþken ile karþýlaþtýrýlmasý. Eðer deðiþim var ise ekranýn yenilemesi.
+lcd_gotoxy(1,2); // Ekranýn yazmaya baþlamasý için 2. Satýr 1. Sütuna gitmesine yarayan fonksiyon.
+printf(lcd_putc,"\nNem : %% %i  ",nem); // Ekrana nem deðiþkeninin yazdýrýlmasý
+eskinem=nem;  // Ekranýn sadece nem deðiþtiðinde yenilenmesi için 2. bir deðiþkene atýyoruz.
+}
+
+delay_ms(400); // 400 ms bekliyoruz
+   
+   }
+
+}
+
+// Yazýlýmýmýz bitti þimdi test edelim
